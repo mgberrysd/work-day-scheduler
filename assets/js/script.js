@@ -30,7 +30,6 @@ $(function () {
   function load() {
     for (i = 0; i < hours.length; i++) {
       var getFromStorage = i + 9;
-      console.log(getFromStorage)
       saved = localStorage.getItem("hour-" + getFromStorage);
       if (saved !== null) {
         hours[i].children().eq(1).text(JSON.parse(saved));
