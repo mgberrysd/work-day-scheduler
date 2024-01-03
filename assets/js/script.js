@@ -11,23 +11,21 @@ $(function () {
   var saveButton = $('.saveBtn');
   var hours = [$('#hour-9'), $('#hour-10'), $('#hour-11'), $('#hour-12'), $('#hour-13'), $('#hour-14'), $('#hour-15'), $('#hour-16'), $('#hour-17')];
 
-  console.log(hours[0].children().eq(1).val());
-  function save() {
-    for (i = 0; i < hours.length; i++) {
-      localStorage.setItem("hour index: " + JSON.stringify(i), JSON.stringify(hours[i].children().eq(1).val().trim()));
+  function save(event) {
+    // for (i = 0; i < hours.length; i++) {
+    //   localStorage.setItem("hour index: " + JSON.stringify(i), JSON.stringify(hours[i].children().eq(1).val().trim()));
+    var btnClicked = $(event.target);
+    // }
+          localStorage.setItem(btnClicked.parent().attr("id"), JSON.stringify(btnClicked.parent().children().eq(1).val().trim()));
 
-    }
   };
   var saved;
 
-      // saved = localStorage.getItem("hour index: " + "0");
-      // console.log(saved);
-      //         hours[0].children().eq(1).text(JSON.parse(saved));
-
-
   function load() {
     for (i = 0; i < hours.length; i++) {
-      saved = localStorage.getItem("hour index: " + i);
+      var getFromStorage = i + 9;
+      console.log(getFromStorage)
+      saved = localStorage.getItem("hour-" + getFromStorage);
       if (saved !== null) {
         hours[i].children().eq(1).text(JSON.parse(saved));
 
